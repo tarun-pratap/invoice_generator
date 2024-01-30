@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #000;
+            /* display: flex;
+            justify-content: center;
+            align-items: center; */
+            height: 100vh;
+        }
+
+        #invoice-container {
+            display: flex;
+            width: 80%; /* Adjust as needed */
+             background-color: #fff; 
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            
+
+        }
+
+        #left-section, #right-section {
+            flex: 1;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            background-color: #232f3e;
+            color: #fff;
+            padding: 20px;
+            margin: 0;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .tp
+        {
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .tr
+        {
+            width:5rem;
+            height: 5rem;
+            border: 5px solid white;
+            border-radius: 50%;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+    </style>
+     
+</head>
+<body >
+    <h1>Invoice</h1>
+    
+    <div style="width: 100%;display: flex;align-items: center;flex-direction: column;height: 200vh;padding: 1rem;">
+        <div class="tr">
+
+        </div>
+    <div id="invoice-container">
+
+       
+        <div id="left-section">
+          
+            <section>
+                <h2>Seller Details</h2>
+                <p><strong>Name:</strong> <%= sellerName %></p>
+                <p><strong>Address:</strong> <%= sellerAddress %></p>
+                <p><strong>City, State, Pincode:</strong> <%= sellerCity %>, <%= sellerState %>, <%= sellerPincode %></p>
+                <p><strong>PAN No.:</strong> <%= sellerPAN %></p>
+                <p><strong>GST Registration No.:</strong> <%= sellerGST %></p>
+            </section>
+
+          
+            <section>
+                <h2>Order Details</h2>
+                <p><strong>Order No.:</strong> <%= orderNumber %></p>
+                <p><strong>Order Date:</strong> <%= orderDate %></p>
+            </section>
+        </div>
+
+        
+        <div id="right-section">
+          
+        
+           <section>
+            <h2>Billing Details</h2>
+            <p><strong>Name:</strong> <%= billingName %></p>
+            <p><strong>Address:</strong> <%= billingAddress %></p>
+            <p><strong>City, State, Pincode:</strong> <%= billingCity %>, <%= billingState %>, <%= billingPincode %></p>
+            <p><strong>State Code:</strong> <%= billingStateCode %></p>
+        </section>
+
+  
+        <section>
+            <h2>Shipping Details</h2>
+            <p><strong>Name:</strong> <%= shippingName %></p>
+            <p><strong>Address:</strong> <%= shippingAddress %></p>
+            <p><strong>City, State, Pincode:</strong> <%= shippingCity %>, <%= shippingState %>, <%= shippingPincode %></p>
+            <p><strong>State Code:</strong> <%= shippingStateCode %></p>
+        </section>
+            <section>
+                <h2>Place of Delivery</h2>
+                <p><strong>Place of Delivery:</strong> <%= placeOfDelivery %></p>
+            </section>
+
+         
+            <section>
+                <h2>Invoice Details</h2>
+                <p><strong>Invoice No.:</strong> <%= invoiceNumber %></p>
+                <p><strong>Invoice Details:</strong> <%= invoiceDetails %></p>
+                <p><strong>Invoice Date:</strong> <%= invoiceDate %></p>
+            </section>
+           
+        </div>
+        
+    </div>
+
+    <div class="tp" style="background-color:#fff;width: 80%;">
+       
+        <section>
+            <h2>Item Details</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Unit Price</th>
+                        <th>Quantity</th>
+                        <th>Discount</th>
+                        <th>Net Amount</th>
+                        <th>Tax Rate</th>
+                        <th>Tax Type</th>
+                        <th>Tax Amount</th>
+                        <th>Total Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                 
+                    <tr>
+                        <td>Description 1</td>
+                        <td id="price"><%= unitPrice %></td>
+                        <td id="quantity"><%= unitQuantity %></td>
+                        <td>1.00</td>
+                        <td id="netAmount"></td>
+                        <td id="taxRate">18%</td>
+                        <td id="taxType">IGST</td>
+                        <td id="taxAmount"></td>
+                        <td id="totalAmount"></td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </section>
+
+      
+    </div></div>
+    <script>
+    
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            const netAmountElement = document.getElementById('netAmount');
+            const taxRateElement = document.getElementById('taxRate');
+            const taxTypeElement = document.getElementById('taxType');
+            const taxAmountElement = document.getElementById('taxAmount');
+            const totalAmountElement = document.getElementById('totalAmount');
+
+            
+            const unitPrice = document.getElementById("price").innerHTML;
+        
+            const unitQuantity = document.getElementById("quantity").innerHTML;
+            const discount = 1.00;
+            const taxRate = 18 / 100; 
+
+            
+            const netAmount = (unitPrice * unitQuantity) - discount;
+            const taxAmount = netAmount * taxRate;
+            const totalAmount = netAmount + taxAmount;
+
+         
+            netAmountElement.textContent = netAmount.toFixed(2);
+            taxRateElement.textContent = (taxRate * 100) + '%';
+            taxTypeElement.textContent = 'IGST'; 
+            taxAmountElement.textContent = taxAmount.toFixed(2);
+            totalAmountElement.textContent = totalAmount.toFixed(2);
+        });
+    </script>
+</body>
+</html>
