@@ -5,9 +5,12 @@ Features
 User-friendly form to input seller, order, billing, shipping, and invoice details.
 Validation checks to ensure the correctness of entered information.
 Dynamic generation of invoices based on the provided details.
+
 Prerequisites:
 2.npm install ejs express
 
 how to run :
 open input_form.html in live server
 node main.js
+DEMO VIDEO LINK:
+https://drive.google.com/file/d/1X31oXA24XDgtzg2nkUher7BZ2j0IYCnC/view?usp=sharing
