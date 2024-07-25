@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/inputForm', (req, res) => {
     
-    res.sendFile(__dirname + '/input_form.html');
+    res.sendFile(__dirname + '/input_form.html');//response jo mila inputform .html file ka directory se vo mene send kr diya localhost:3000/inputForm pr 
 });
 
 app.post('/generateInvoice', (req, res) => {
